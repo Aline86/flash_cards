@@ -1,0 +1,5 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+knp_paginator:
+    template:
+        pagination: "other/twitter_bootstrap_v4_pagination.html.twig"

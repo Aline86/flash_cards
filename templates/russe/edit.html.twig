@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Russe{% endblock %}
+
+{% block body %}
+    <h1>Edit Russe</h1>
+
+    {{ include('russe/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('russe_index') }}">back to list</a>
+
+    {{ include('russe/_delete_form.html.twig') }}
+{% endblock %}

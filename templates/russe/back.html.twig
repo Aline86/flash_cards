@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}russe index{% endblock %}
+
+{% block body %}
+    <h1>Russe index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fr</th>
+                <th>Ru</th>
+                <th>Theme</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for russe in russes %}
+            <tr>
+                <td>{{ russe.id }}</td>
+                <td>{{ russe.fr }}</td>
+                <td>{{ russe.ru }}</td>
+               
+                <td>{{ russe.theme.theme }}</td>
+               
+                <td>
+                    <a href="{{ path('russe_show', {'id': russe.id}) }}">show</a>
+                    <a href="{{ path('russe_edit', {'id': russe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('russe_new') }}">Create new</a>
+{% endblock %}

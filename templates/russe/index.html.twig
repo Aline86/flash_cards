@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Russe index{% endblock %}
+
+{% block body %}
+    <h1>Russe</h1>
+        {% if russes is defined %}
+        {% for russe in russes %}
+            <div id="fr">
+                {{ russe.theme.titre }}
+                <div class="center">
+                    <div id="french">
+                        <div>{{ russe.fr }}</div>
+                        
+                        <input id="button" type="submit" value="Traduction" />
+                        
+                        <div class="path">
+                            <a href="{{ path('russe_index', {'id': russe.id , 'p': 'next'}) }}">Next</a>
+                            <a href="{{ path('russe_index', {'id': russe.id , 'p': 'previous'}) }}">Previous</a>                      
+                        </div>
+                    </div>
+                </div>
+                <div class="center">
+                    <div id="russian">
+                        <div>{{ russe.ru }}</div>
+                        <div class="path">
+                            <a href="{{ path('russe_index', {'id': russe.id , 'p': 'next'}) }}">Next</a>
+                            <a href="{{ path('russe_index', {'id': russe.id , 'p': 'previous'}) }}">Previous</a>                      
+                        </div>
+                    </div>
+                </div>
+                
+                       
+            </div>
+    
+        {% endfor %}
+        {% endif %}
+        <div class="start">
+        {% if id < number or id > number - 1 %}  
+            <a href="{{ path('russe_index', {'id': 0 , 'p': 'next'}) }}">Start</a>          
+        {% endif %}
+        </div>
+          
+{% endblock %}

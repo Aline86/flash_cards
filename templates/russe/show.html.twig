@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Russe{% endblock %}
+
+{% block body %}
+    <h1>Russe</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ russe.id }}</td>
+            </tr>
+            <tr>
+                <th>Fr</th>
+                <td>{{ russe.fr }}</td>
+            </tr>
+            <tr>
+                <th>Ru</th>
+                <td>{{ russe.ru }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('russe_index') }}">back to list</a>
+
+    <a href="{{ path('russe_edit', {'id': russe.id}) }}">edit</a>
+
+    {{ include('russe/_delete_form.html.twig') }}
+{% endblock %}

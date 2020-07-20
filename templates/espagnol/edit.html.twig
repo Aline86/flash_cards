@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Espagnol{% endblock %}
+
+{% block body %}
+    <h1>Edit Espagnol</h1>
+
+    {{ include('espagnol/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('espagnol_index') }}">back to list</a>
+
+    {{ include('espagnol/_delete_form.html.twig') }}
+{% endblock %}

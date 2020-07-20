@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espagnol{% endblock %}
+
+{% block body %}
+    <h1>Espagnol</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ espagnol.id }}</td>
+            </tr>
+            <tr>
+                <th>Fr</th>
+                <td>{{ espagnol.fr }}</td>
+            </tr>
+            <tr>
+                <th>Es</th>
+                <td>{{ espagnol.es }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('espagnol_index') }}">back to list</a>
+
+    <a href="{{ path('espagnol_edit', {'id': espagnol.id}) }}">edit</a>
+
+    {{ include('espagnol/_delete_form.html.twig') }}
+{% endblock %}

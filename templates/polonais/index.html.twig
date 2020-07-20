@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Polonais index{% endblock %}
+
+{% block body %}
+    <h1>Polonais index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fr</th>
+                <th>Pl</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for polonai in polonais %}
+            <tr>
+                <td>{{ polonai.id }}</td>
+                <td>{{ polonai.fr }}</td>
+                <td>{{ polonai.pl }}</td>
+                <td>
+                    <a href="{{ path('polonais_show', {'id': polonai.id}) }}">show</a>
+                    <a href="{{ path('polonais_edit', {'id': polonai.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('polonais_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Espagnol{% endblock %}
+
+{% block body %}
+    <h1>Create new Espagnol</h1>
+
+    {{ include('espagnol/_form.html.twig') }}
+
+    <a href="{{ path('espagnol_index') }}">back to list</a>
+{% endblock %}

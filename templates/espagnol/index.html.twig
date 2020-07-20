@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espagnol index{% endblock %}
+
+{% block body %}
+    <h1>Espagnol index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fr</th>
+                <th>Es</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for espagnol in espagnols %}
+            <tr>
+                <td>{{ espagnol.id }}</td>
+                <td>{{ espagnol.fr }}</td>
+                <td>{{ espagnol.es }}</td>
+                <td>
+                    <a href="{{ path('espagnol_show', {'id': espagnol.id}) }}">show</a>
+                    <a href="{{ path('espagnol_edit', {'id': espagnol.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('espagnol_new') }}">Create new</a>
+{% endblock %}

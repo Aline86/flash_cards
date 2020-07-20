@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Allemand index{% endblock %}
+
+{% block body %}
+    <h1>Allemand index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fr</th>
+                <th>De</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for allemand in allemands %}
+            <tr>
+                <td>{{ allemand.id }}</td>
+                <td>{{ allemand.fr }}</td>
+                <td>{{ allemand.de }}</td>
+                <td>
+                    <a href="{{ path('allemand_show', {'id': allemand.id}) }}">show</a>
+                    <a href="{{ path('allemand_edit', {'id': allemand.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('allemand_new') }}">Create new</a>
+{% endblock %}

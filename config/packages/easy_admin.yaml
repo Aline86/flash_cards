@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        Russe:
+            class: App\Entity\Russe
+            form:
+                fields:['fr', 'ru', 'theme']
+        
+       

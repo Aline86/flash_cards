@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Russe index{% endblock %}
+
+{% block body %}
+        <h1>Sélectionner un niveau</h1>
+        <div class="niveau">
+        <form id="form_recherche" action="{{ path('rechercher') }}" method="post">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+                <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </form>
+        </div>
+
+        
+            
+{% endblock %}

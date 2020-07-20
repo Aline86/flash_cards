@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Polonais{% endblock %}
+
+{% block body %}
+    <h1>Polonais</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ polonai.id }}</td>
+            </tr>
+            <tr>
+                <th>Fr</th>
+                <td>{{ polonai.fr }}</td>
+            </tr>
+            <tr>
+                <th>Pl</th>
+                <td>{{ polonai.pl }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('polonais_index') }}">back to list</a>
+
+    <a href="{{ path('polonais_edit', {'id': polonai.id}) }}">edit</a>
+
+    {{ include('polonais/_delete_form.html.twig') }}
+{% endblock %}

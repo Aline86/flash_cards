@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Polonais{% endblock %}
+
+{% block body %}
+    <h1>Edit Polonais</h1>
+
+    {{ include('polonais/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('polonais_index') }}">back to list</a>
+
+    {{ include('polonais/_delete_form.html.twig') }}
+{% endblock %}
