@@ -18,23 +18,40 @@ class PolonaisRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Polonais::class);
     }
-
-    // /**
-    //  * @return Polonais[] Returns an array of Polonais objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+    public function findByThemeField($value)
+    {  
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.theme = :val')
             ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    /**
+     * @return Polonais[] Returns an array of Polonais objects
+     */
+  
+    public function findByFrenchFields($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.fr LIKE :val')
+            ->setParameter('val', $value.'%')
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    public function findByPolonaisFields($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.pl LIKE :val')
+            ->setParameter('val', $value.'%')
+            ->orderBy('p.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Polonais

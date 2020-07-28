@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type as Filters;
 use Doctrine\ORM\EntityRepository;
 
-class SearchType extends AbstractType{
+class SearchespagnolType extends AbstractType{
 
     public function buildForm(FormBuilderInterface $formBuilder, array $option){
 
@@ -26,7 +26,7 @@ class SearchType extends AbstractType{
             'query_builder' => function (EntityRepository $er) {
                 return $er->createQueryBuilder('p')
                     ->where('p.langue = :langue')
-                    ->setParameter('langue', 1)
+                    ->setParameter('langue', 4)
                     ->orderBy('p.id', 'ASC');          
             },
         ])

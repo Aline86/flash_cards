@@ -28,6 +28,11 @@ class Polonais
      */
     private $pl;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="titre")
+     */
+    private $theme;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,18 @@ class Polonais
     public function setPl(string $pl): self
     {
         $this->pl = $pl;
+
+        return $this;
+    }
+
+    public function getTheme(): ?Theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?Theme $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }

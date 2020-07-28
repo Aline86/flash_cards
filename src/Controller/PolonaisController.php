@@ -9,20 +9,87 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 /**
- * @Route("/polonais")
+ * @Route("/admin/polonais")
  */
 class PolonaisController extends AbstractController
 {
     /**
-     * @Route("/", name="polonais_index", methods={"GET"})
+     * @Route("/", name="polonais_index", methods={"GET", "POST"})
      */
-    public function index(PolonaisRepository $polonaisRepository): Response
+    public function index(PolonaisRepository $polonaisRepository, Request $request): Response
     {
+        if($request->isXmlHttpRequest())
+        {     
+            $motcle ='';
+           $motcle = $request->request->get('motcle');
+           $filtre = $request->request->get('filtre');
+          if($motcle != '')
+           {
+            $ajax= $polonaisRepository->findByFrenchFields($motcle);
+            
+           /* return $this->render('polonais/index.html.twig', [
+                'polonais' => $ajax,
+                 
+            ]);    */
+            
+            $encoders = [new JsonEncoder()];
+            //On instancie le normalizer pour convertir la collection en tableau
+            $normalizers = [new ObjectNormalizer()];
+            //On fait la conversion en json
+            //On instancie le convertisseur
+            $serializer = new Serializer($normalizers, $encoders);
+            //on convertit en json
+            $jsonContent = $serializer->serialize($ajax, 'json', [
+                'circular_reference_handler' => function($object){
+                    return $object->getId();
+                }
+            ]);
+            //On instancie la réponse
+            $response = new Response($jsonContent);
+            //On ajoute l'entête HTTP
+            $response->headers->set('Content-Type', 'application/json');
+            // On envoie la réponse 
+            
+            return $response;
+         
+           }
+           else {
+               $ajax=$polonaisRepository->findAll();
+               $encoders = [new JsonEncoder()];
+               //On instancie le normalizer pour convertir la collection en tableau
+               $normalizers = [new ObjectNormalizer()];
+               //On fait la conversion en json
+               //On instancie le convertisseur
+               $serializer = new Serializer($normalizers, $encoders);
+               //on convertit en json
+               $jsonContent = $serializer->serialize($ajax, 'json', [
+                   'circular_reference_handler' => function($object){
+                       return $object->getId();
+                   }
+               ]);
+               //On instancie la réponse
+               $response = new Response($jsonContent);
+               //On ajoute l'entête HTTP
+               $response->headers->set('Content-Type', 'application/json');
+               // On envoie la réponse 
+               
+               return $response;    
+                        
+        }  
+    }else{
+        $ajax=$polonaisRepository->findAll();
         return $this->render('polonais/index.html.twig', [
-            'polonais' => $polonaisRepository->findAll(),
-        ]);
+            'polonais' => $ajax,
+             
+        ]);    
+        }
     }
 
     /**
@@ -57,7 +124,7 @@ class PolonaisController extends AbstractController
             'polonai' => $polonai,
         ]);
     }
-
+  
     /**
      * @Route("/{id}/edit", name="polonais_edit", methods={"GET","POST"})
      */

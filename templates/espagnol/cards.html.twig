@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Russe{% endblock %}
+{% block title %}Espagnol{% endblock %}
 
 {% block body %}
     <div class="form">
-        <h1>Russe</h1>
+        <h1>Espagnol</h1>
         <form id="theme_form" class="form">
             {{ form_start(form) }}
                 {{ form_widget(form) }}
@@ -13,25 +13,25 @@
         </form>
     </div>
         <div id="result">
-        {% if russes is defined  %}
-        {% for russe in russes %}
+        {% if espagnols is defined  %}
+        {% for espagnol in espagnols %}
             <div id="fr">
                 <div class="center">
                     <div id="french">
-                        <div>{{ russe.fr }}</div>
+                        <div>{{ espagnol.fr }}</div>
                         <input id="button" type="submit" value="Traduction" />                       
                     </div>
                 </div>
                 <div class="center">                   
                     <div id="russian">
-                        <div>{{ russe.ru }}</div>
+                        <div>{{ espagnol.es }}</div>
                     </div>
                 </div>              
                </div>        
             </div>    
         {% endfor %}
         <div class="pagination">
-        {{knp_pagination_render(russes)}}
+        {{knp_pagination_render(espagnols)}}
         </div>
         {% endif %}   
           

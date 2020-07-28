@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "easycorp/easyadmin-bundle": "3.0",
+        "friendsofsymfony/jsrouting-bundle": "^2.6",
         "knplabs/knp-paginator-bundle": "^5.2",
         "laminas/laminas-code": "^3.4",
         "lexik/form-filter-bundle": "^6.0",

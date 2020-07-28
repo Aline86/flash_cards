@@ -18,7 +18,15 @@ class EspagnolRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Espagnol::class);
     }
-
+    public function findByThemeField($value)
+    {  
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.theme = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     // /**
     //  * @return Espagnol[] Returns an array of Espagnol objects
     //  */

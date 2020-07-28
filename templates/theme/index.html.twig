@@ -10,6 +10,7 @@
             <tr>
                 <th>Id</th>
                 <th>Theme</th>
+                <th>Langue</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,6 +19,10 @@
             <tr>
                 <td>{{ theme.id }}</td>
                 <td>{{ theme.theme }}</td>
+                <td>
+                    {{ theme.langue.libelle}}
+                   
+                </td>
                 <td>
                     <a href="{{ path('theme_show', {'id': theme.id}) }}">show</a>
                     <a href="{{ path('theme_edit', {'id': theme.id}) }}">edit</a>

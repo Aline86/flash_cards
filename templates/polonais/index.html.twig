@@ -3,8 +3,15 @@
 {% block title %}Polonais index{% endblock %}
 
 {% block body %}
+    <div class="ajax">
+    <div class="hide">
     <h1>Polonais index</h1>
-
+    <div class="filtre">
+        <input id="autocomplete" type="text" placeholder="filtre français" />
+        <a href="{{ path('polonais_index') }}">Retour aux actions</a>
+    </div>
+    <a href="{{ path('polonais_new') }}">Create new</a>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -16,14 +23,15 @@
         </thead>
         <tbody>
         {% for polonai in polonais %}
-            <tr>
+            <tr >
                 <td>{{ polonai.id }}</td>
                 <td>{{ polonai.fr }}</td>
-                <td>{{ polonai.pl }}</td>
+                <td class="pl">{{ polonai.pl }}</td>
                 <td>
-                    <a href="{{ path('polonais_show', {'id': polonai.id}) }}">show</a>
+                    <a id="path" href="{{ path('polonais_show', {'id': polonai.id}) }}">show</a>
                     <a href="{{ path('polonais_edit', {'id': polonai.id}) }}">edit</a>
                 </td>
+               
             </tr>
         {% else %}
             <tr>
@@ -32,6 +40,62 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
+    <script>
 
-    <a href="{{ path('polonais_new') }}">Create new</a>
+document.getElementById("autocomplete").addEventListener('keyup', function(e){
+    
+    var motcle = document.getElementById("autocomplete").value
+    var retour=""
+    var liste = document.querySelector(".table")
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: "{{ path('polonais_index')}}",
+        data: {
+           
+            'motcle': motcle
+        },
+        cache: false,
+        success: function(data){
+      
+            console.log(motcle)
+           
+            liste.innerHTML = "";
+            data.forEach(function(elem){
+            var tr=document.createElement('tr');         
+               for(i in elem){
+                    
+                   delete elem.theme
+                   var td=document.createElement('td');
+                   var text=document.createTextNode(`${elem[i]}`)
+                   td.appendChild(text)
+                   tr.appendChild(td)
+                   liste.appendChild(tr)
+                   if(motcle==""){
+
+                liste.innerHTML = "";
+            data.forEach(function(elem){
+            var tr=document.createElement('tr');         
+               for(i in elem){                
+                   delete elem.theme       
+                   var td=document.createElement('td');
+                   var text=document.createTextNode(`${elem[i]}`)
+                   td.appendChild(text)
+                   tr.appendChild(td)
+                   liste.appendChild(tr)
+             }; });
+            }
+                   
+               }
+            })
+
+        }
+         
+        })
+
+         
+    });
+ 
+</script>
 {% endblock %}

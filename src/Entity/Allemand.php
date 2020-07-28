@@ -29,6 +29,11 @@ class Allemand
      */
     private $de;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Theme::class, inversedBy="titre")
+     */
+    private $theme;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +59,18 @@ class Allemand
     public function setDe(string $de): self
     {
         $this->de = $de;
+
+        return $this;
+    }
+
+    public function getTheme(): ?Theme
+    {
+        return $this->theme;
+    }
+
+    public function setTheme(?Theme $theme): self
+    {
+        $this->theme = $theme;
 
         return $this;
     }

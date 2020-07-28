@@ -23,8 +23,9 @@ class RusseType extends AbstractType
                 'choice_label' => 'theme',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
-                        ->orderBy('p.id', 'ASC');
-                       
+                        ->where('p.langue = :langue')
+                        ->setParameter('langue', 1)
+                        ->orderBy('p.id', 'ASC');          
                 },
             ])
         ;

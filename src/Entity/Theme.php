@@ -29,6 +29,12 @@ class Theme
      */
     private $theme;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Langue::class, inversedBy="Id")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $langue;
+
     public function __construct()
     {
         $this->titre = new ArrayCollection();
@@ -41,6 +47,9 @@ class Theme
 
     /**
      * @return Collection|Russe[]
+     * @return Collection|Polonais[]
+     * @return Collection|Allemand[]
+     * @return Collection|Espagnol[]
      */
     public function getTitre(): Collection
     {
@@ -84,4 +93,17 @@ class Theme
     public function __toString(){
         return $this->theme;
     }
+
+    public function getLangue(): ?Langue
+    {
+        return $this->langue;
+    }
+
+    public function setLangue(?Langue $langue): self
+    {
+        $this->langue = $langue;
+
+        return $this;
+    }
+
 }

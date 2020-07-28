@@ -18,6 +18,15 @@ class AllemandRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Allemand::class);
     }
+    public function findByThemeField($value)
+    {  
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.theme = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     // /**
     //  * @return Allemand[] Returns an array of Allemand objects
